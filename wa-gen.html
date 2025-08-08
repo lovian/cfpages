@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WhatsApp Link Generator</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    body { margin: 0; background: #0b1220; color: #e6edf3; display: grid; place-items: center; min-height: 100vh; }
+    .card { width: min(680px, 92vw); background: #0e1628; border: 1px solid #243047; border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    h1 { margin: 6px 0 16px; font-size: 1.35rem; letter-spacing: .3px; }
+    p.hint { margin: 0 0 18px; color: #a3b1c6; font-size: .95rem; }
+    .row { display: grid; grid-template-columns: 140px 1fr; gap: 10px; align-items: center; margin: 12px 0; }
+    label { color: #c7d2e2; font-weight: 600; font-size: .95rem; }
+    input, select, textarea { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #243047; background: #0a1324; color: #e6edf3; outline: none; }
+    textarea { min-height: 92px; resize: vertical; }
+    input[readonly] { background: #0c172b; }
+    .actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .btn { cursor: pointer; border: 1px solid #2b3a54; background: #15213a; color: #e6edf3; padding: 10px 14px; border-radius: 10px; font-weight: 600; }
+    .btn.primary { background: #2b6ef6; border-color: #2b6ef6; color: white; }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+    .tip { font-size: .85rem; color: #8ea2bf; margin-top: 10px; }
+    .footer { margin-top: 18px; font-size: .85rem; color: #8ea2bf; }
+    a.preview { color: #8ab4ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>WhatsApp Link Generator</h1>
+    <p class="hint">Masukkan nomor HP (tanpa spasi/tanda) dan pesan opsional. Link akan dibuat otomatis.</p>
+
+    <div class="row">
+      <label for="code">Kode negara</label>
+      <select id="code" aria-label="Kode negara">
+        <option value="62" selected>+62 (Indonesia)</option>
+        <option value="60">+60 (Malaysia)</option>
+        <option value="65">+65 (Singapura)</option>
+        <option value="63">+63 (Filipina)</option>
+        <option value="66">+66 (Thailand)</option>
+        <option value="91">+91 (India)</option>
+        <option value="1">+1 (US/CA)</option>
+        <option value="44">+44 (UK)</option>
+        <option value="61">+61 (Australia)</option>
+        <option value="81">+81 (Jepang)</option>
+        <option value="82">+82 (Korea)</option>
+        <option value="86">+86 (Tiongkok)</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="phone">Nomor HP</label>
+      <input id="phone" type="tel" placeholder="contoh: 08123456789 atau 8123456789" autocomplete="tel" />
+    </div>
+
+    <div class="row" style="grid-template-columns: 1fr;">
+      <label for="message">Pesan (opsional)</label>
+      <textarea id="message" placeholder="Halo! Saya tertarik."></textarea>
+    </div>
+
+    <div class="row">
+      <label for="link">Hasil link</label>
+      <input id="link" type="text" readonly />
+    </div>
+
+    <div class="actions">
+      <button id="copyBtn" class="btn">Salin Link</button>
+      <a id="openLink" class="btn primary" href="#" target="_blank" rel="noopener">Buka di tab baru</a>
+      <button id="resetBtn" class="btn" title="Bersihkan input">Reset</button>
+    </div>
+
+    <div class="tip" id="tip">Format: gunakan nomor lokal tanpa 0 awal atau biarkan saya yang rapikan 😉</div>
+
+    <div class="footer">Dibuat untuk mempermudah pembuatan <code>wa.me</code> link. Tidak ada data yang dikirim ke server.</div>
+  </div>
+
+  <script>
+    const codeEl = document.getElementById('code');
+    const phoneEl = document.getElementById('phone');
+    const msgEl = document.getElementById('message');
+    const linkEl = document.getElementById('link');
+    const openEl = document.getElementById('openLink');
+    const copyBtn = document.getElementById('copyBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const tipEl = document.getElementById('tip');
+
+    function sanitizeDigits(s) { return (s || '').replace(/\D+/g, ''); }
+
+    function buildLink() {
+      let cc = sanitizeDigits(codeEl.value);
+      let raw = phoneEl.value.trim();
+      let digits = sanitizeDigits(raw);
+
+      // Jika user tempelkan dengan +62 atau 62 di depan, buang dari local part
+      if (digits.startsWith(cc)) {
+        digits = digits.slice(cc.length);
+      } else if (digits.startsWith('0')) {
+        // buang 0 awal bila ada
+        digits = digits.replace(/^0+/, '');
+      }
+
+      // validasi minimal panjang (kasar): 5 digit local
+      const valid = digits.length >= 5;
+
+      const full = valid ? cc + digits : '';
+      const text = msgEl.value.trim();
+      const url = valid
+        ? 'https://wa.me/' + full + (text ? ('?text=' + encodeURIComponent(text)) : '')
+        : '';
+
+      linkEl.value = url;
+      openEl.href = url || '#';
+      openEl.setAttribute('aria-disabled', url ? 'false' : 'true');
+      openEl.classList.toggle('primary', !!url);
+      copyBtn.disabled = !url;
+
+      tipEl.textContent = valid
+        ? `Nomor akhir: +${cc} ${digits}`
+        : 'Masukkan nomor yang benar (min. 5 digit setelah kode negara).';
+    }
+
+    function copyLink() {
+      if (!linkEl.value) return;
+      navigator.clipboard.writeText(linkEl.value).then(() => {
+        const old = copyBtn.textContent;
+        copyBtn.textContent = 'Tersalin!';
+        setTimeout(() => (copyBtn.textContent = old), 1200);
+      }).catch(() => {
+        linkEl.select();
+        document.execCommand('copy');
+      });
+    }
+
+    function resetAll() {
+      phoneEl.value = '';
+      msgEl.value = '';
+      buildLink();
+      phoneEl.focus();
+    }
+
+    [codeEl, phoneEl, msgEl].forEach(el => el.addEventListener('input', buildLink));
+    copyBtn.addEventListener('click', copyLink);
+    resetBtn.addEventListener('click', resetAll);
+
+    // init
+    buildLink();
+  </script>
+</body>
+</html>
