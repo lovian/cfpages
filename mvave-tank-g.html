@@ -195,6 +195,21 @@
     .tankg-header p{ font-size: 16px; }
     tbody td{ font-size: 14.5px; }
   }
+
+  /* ===== AMP & CAB: 2-row layout per item (lebih lega di desktop) ===== */
+  .amp td, .cab td { white-space: normal; }
+  .amp .slot, .cab .slot { width: 62px; text-align:center; color: var(--muted); }
+  .amp .model, .cab .model { font-weight: 600; color: var(--text); }
+  .amp .meta, .cab .meta { color: var(--muted); font-size: 13px; }
+  .amp .label, .cab .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  .amp .char, .cab .char { color: var(--text); }
+  .amp tr.detail-row td, .cab tr.detail-row td {
+    background: rgba(255,255,255,.015);
+  }
+  .amp tr.detail-row td, .cab tr.detail-row td {
+    padding-top: 10px;
+    padding-bottom: 12px;
+  }
 </style>
 
 <section class="tankg-wrap">
@@ -212,69 +227,215 @@
     </div>
   </header>
 
-  <div class="grid-2">
-    <!-- AMP -->
-    <section class="card">
-      <div class="card-head">
-        <h2>AMP MODELS</h2>
-        <p>Model ampli Tank-G dan referensi karakter real amp.</p>
-      </div>
+<div class="table-wrap">
+  <div class="table-scroll">
+    <table class="amp" aria-label="AMP Models">
+      <thead>
+        <tr>
+          <th style="width:62px;">Slot</th>
+          <th>Tank-G</th>
+          <th style="width:260px;">Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Slot 1 -->
+        <tr>
+          <td class="slot" rowspan="2">1</td>
+          <td class="model">UWE-Twins 335</td>
+          <td class="meta"><span class="label">Real Amp:</span> Two-Rock / Dumble</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Clean tebal</span></td>
+        </tr>
 
-      <div class="table-wrap">
-        <div class="table-scroll">
-          <table class="amp" aria-label="AMP Models">
-            <thead>
-              <tr><th>Slot</th><th>Tank-G</th><th>Real Amp</th><th>Karakter</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td>UWE-Twins 335</td><td>Two-Rock / Dumble</td><td>Clean tebal</td></tr>
-              <tr><td>2</td><td>Archetype_C_W</td><td>Mesa / Dumble</td><td>Warm, smooth</td></tr>
-              <tr><td>3</td><td>TH-Mars VM410</td><td>Marshall JVM</td><td>OD modern</td></tr>
-              <tr><td>4</td><td>Friedman 100</td><td>Friedman BE</td><td>Punchy rock</td></tr>
-              <tr><td>5</td><td>Brit Plex 50</td><td>Marshall Plexi</td><td>Classic crunch</td></tr>
-              <tr><td>6</td><td>Mars FD Hundred</td><td>JCM800 mod</td><td>Rock-metal</td></tr>
-              <tr><td>7</td><td>Pea V 534</td><td>Peavey 5150</td><td>High gain</td></tr>
-              <tr><td>8</td><td>Diesel_Hagan_6</td><td>Diezel VH4</td><td>Modern metal</td></tr>
-              <tr><td>9</td><td>EVH 5150 III EL34</td><td>EVH 5150</td><td>Cutting lead</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+        <!-- Slot 2 -->
+        <tr>
+          <td class="slot" rowspan="2">2</td>
+          <td class="model">Archetype_C_W</td>
+          <td class="meta"><span class="label">Real Amp:</span> Mesa / Dumble</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Warm, smooth</span></td>
+        </tr>
 
-      <div class="note"><strong>Tip cepat:</strong> Friedman 100 + V30 biasanya paling fleksibel untuk banyak genre.</div>
-    </section>
+        <!-- Slot 3 -->
+        <tr>
+          <td class="slot" rowspan="2">3</td>
+          <td class="model">TH-Mars VM410</td>
+          <td class="meta"><span class="label">Real Amp:</span> Marshall JVM</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">OD modern</span></td>
+        </tr>
 
-    <!-- CAB -->
-    <section class="card">
-      <div class="card-head">
-        <h2>IR CAB MODELS</h2>
-        <p>Simulasi cabinet (IR) dan karakter umum tiap cab.</p>
-      </div>
+        <!-- Slot 4 -->
+        <tr>
+          <td class="slot" rowspan="2">4</td>
+          <td class="model">Friedman 100</td>
+          <td class="meta"><span class="label">Real Amp:</span> Friedman BE</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Punchy rock</span></td>
+        </tr>
 
-      <div class="table-wrap">
-        <div class="table-scroll">
-          <table class="cab" aria-label="IR Cab Models">
-            <thead>
-              <tr><th>Slot</th><th>Cabinet</th><th>Size</th><th>Karakter</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>0</td><td>IR OFF</td><td>–</td><td>Cab real only</td></tr>
-              <tr><td>1</td><td>VHT Deliverance</td><td>4×12</td><td>Tight modern</td></tr>
-              <tr><td>2</td><td>Experimental</td><td>4×12</td><td>Sound design</td></tr>
-              <tr><td>3</td><td>Electro-Voice</td><td>2×10</td><td>Clear fast</td></tr>
-              <tr><td>4</td><td>Mesa Boogie</td><td>4×12</td><td>Low end besar</td></tr>
-              <tr><td>5</td><td>Fender Champ</td><td>1×8</td><td>Vintage</td></tr>
-              <tr><td>6</td><td>Fender Princeton</td><td>1×10</td><td>Clean balance</td></tr>
-              <tr><td>7</td><td>Marshall 1960 V30</td><td>4×12</td><td>Rock mid</td></tr>
-              <tr><td>8</td><td>Diezel V30</td><td>4×12</td><td>Modern metal</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+        <!-- Slot 5 -->
+        <tr>
+          <td class="slot" rowspan="2">5</td>
+          <td class="model">Brit Plex 50</td>
+          <td class="meta"><span class="label">Real Amp:</span> Marshall Plexi</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Classic crunch</span></td>
+        </tr>
 
-      <div class="note"><strong>FRFR / speaker aktif:</strong> gunakan IR CAB <strong>ON</strong> (slot 1–8). Hindari IR OFF kecuali ke power amp + cab gitar asli.</div>
-    </section>
+        <!-- Slot 6 -->
+        <tr>
+          <td class="slot" rowspan="2">6</td>
+          <td class="model">Mars FD Hundred</td>
+          <td class="meta"><span class="label">Real Amp:</span> JCM800 mod</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Rock-metal</span></td>
+        </tr>
+
+        <!-- Slot 7 -->
+        <tr>
+          <td class="slot" rowspan="2">7</td>
+          <td class="model">Pea V 534</td>
+          <td class="meta"><span class="label">Real Amp:</span> Peavey 5150</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">High gain</span></td>
+        </tr>
+
+        <!-- Slot 8 -->
+        <tr>
+          <td class="slot" rowspan="2">8</td>
+          <td class="model">Diesel_Hagan_6</td>
+          <td class="meta"><span class="label">Real Amp:</span> Diezel VH4</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Modern metal</span></td>
+        </tr>
+
+        <!-- Slot 9 -->
+        <tr>
+          <td class="slot" rowspan="2">9</td>
+          <td class="model">EVH 5150 III EL34</td>
+          <td class="meta"><span class="label">Real Amp:</span> EVH 5150</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Cutting lead</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
+
+<div class="table-wrap">
+  <div class="table-scroll">
+    <table class="cab" aria-label="IR Cab Models">
+      <thead>
+        <tr>
+          <th style="width:62px;">Slot</th>
+          <th>Cabinet</th>
+          <th style="width:260px;">Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Slot 0 -->
+        <tr>
+          <td class="slot" rowspan="2">0</td>
+          <td class="model">IR OFF</td>
+          <td class="meta"><span class="label">Size:</span> –</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Cab real only</span></td>
+        </tr>
+
+        <!-- Slot 1 -->
+        <tr>
+          <td class="slot" rowspan="2">1</td>
+          <td class="model">VHT Deliverance</td>
+          <td class="meta"><span class="label">Size:</span> 4×12</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Tight modern</span></td>
+        </tr>
+
+        <!-- Slot 2 -->
+        <tr>
+          <td class="slot" rowspan="2">2</td>
+          <td class="model">Experimental</td>
+          <td class="meta"><span class="label">Size:</span> 4×12</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Sound design</span></td>
+        </tr>
+
+        <!-- Slot 3 -->
+        <tr>
+          <td class="slot" rowspan="2">3</td>
+          <td class="model">Electro-Voice</td>
+          <td class="meta"><span class="label">Size:</span> 2×10</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Clear fast</span></td>
+        </tr>
+
+        <!-- Slot 4 -->
+        <tr>
+          <td class="slot" rowspan="2">4</td>
+          <td class="model">Mesa Boogie</td>
+          <td class="meta"><span class="label">Size:</span> 4×12</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Low end besar</span></td>
+        </tr>
+
+        <!-- Slot 5 -->
+        <tr>
+          <td class="slot" rowspan="2">5</td>
+          <td class="model">Fender Champ</td>
+          <td class="meta"><span class="label">Size:</span> 1×8</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Vintage</span></td>
+        </tr>
+
+        <!-- Slot 6 -->
+        <tr>
+          <td class="slot" rowspan="2">6</td>
+          <td class="model">Fender Princeton</td>
+          <td class="meta"><span class="label">Size:</span> 1×10</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Clean balance</span></td>
+        </tr>
+
+        <!-- Slot 7 -->
+        <tr>
+          <td class="slot" rowspan="2">7</td>
+          <td class="model">Marshall 1960 V30</td>
+          <td class="meta"><span class="label">Size:</span> 4×12</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Rock mid</span></td>
+        </tr>
+
+        <!-- Slot 8 -->
+        <tr>
+          <td class="slot" rowspan="2">8</td>
+          <td class="model">Diezel V30</td>
+          <td class="meta"><span class="label">Size:</span> 4×12</td>
+        </tr>
+        <tr class="detail-row">
+          <td colspan="2"><span class="label">Karakter:</span> <span class="char">Modern metal</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
   <!-- PRESET BOOK -->
   <section class="card preset">
