@@ -1,0 +1,270 @@
+<!--
+MVave Tank-G Landing Section (HTML + CSS, no inline styles)
+✅ Responsive (2 kolom di desktop, 1 kolom di mobile)
+✅ Tabel bisa di-scroll horizontal di layar kecil
+✅ Tombol download PDF (ganti href sesuai lokasi file di website kamu)
+-->
+
+<style>
+  :root{
+    --text:#111;
+    --muted:#555;
+    --line:#e6e6e6;
+    --bg:#fff;
+    --soft:#f7f7f7;
+    --radius:14px;
+  }
+  .tankg-wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 16px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--text);
+    line-height: 1.55;
+    background: var(--bg);
+  }
+  .tankg-header h1{
+    font-size: 30px;
+    margin: 0 0 6px;
+    letter-spacing: .2px;
+  }
+  .tankg-header p{
+    margin: 0;
+    color: var(--muted);
+  }
+
+  /* Buttons */
+  .btn-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin: 14px 0 6px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 10px 12px;
+    border:1px solid var(--line);
+    border-radius: 999px;
+    text-decoration:none;
+    color: var(--text);
+    background: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .btn:hover{ background: var(--soft); }
+
+  /* Layout */
+  .grid-2{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 18px;
+  }
+  @media (min-width: 920px){
+    .grid-2{
+      grid-template-columns: 1fr 1fr;
+      align-items:start;
+    }
+  }
+
+  .card{
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    overflow:hidden;
+    background:#fff;
+  }
+  .card-head{
+    padding: 14px 14px 10px;
+    border-bottom:1px solid var(--line);
+    background: #fff;
+  }
+  .card-head h2{
+    font-size: 18px;
+    margin: 0 0 6px;
+  }
+  .card-head p{
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .note{
+    padding: 10px 14px 14px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* Table */
+  .table-wrap{
+    overflow-x:auto;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    min-width: 680px;
+  }
+  thead th{
+    text-align:left;
+    padding: 10px 12px;
+    border-bottom:1px solid var(--line);
+    background: var(--soft);
+    font-size: 14px;
+  }
+  tbody td{
+    padding: 10px 12px;
+    border-bottom:1px solid #f0f0f0;
+    font-size: 14px;
+    vertical-align: top;
+  }
+  tbody tr:last-child td{ border-bottom:0; }
+
+  /* Preset table a bit wider */
+  .preset table{ min-width: 820px; }
+
+  footer.tankg-footer{
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top:1px solid var(--line);
+    color:#777;
+    font-size: 13px;
+  }
+  .small{
+    font-size: 13px;
+    color: var(--muted);
+  }
+</style>
+
+<section class="tankg-wrap">
+  <header class="tankg-header">
+    <h1>MVave Tank-G – AMP & CAB Reference</h1>
+    <p>Ringkasan padanan real amp & IR cabinet berdasarkan tabel bawaan MVave Tank-G.</p>
+
+    <!-- Download Buttons
+         Penting: pindahkan file PDF ke hosting website kamu, lalu ganti href di bawah.
+         (Link sandbox cuma berlaku di sini, bukan untuk website publik.)
+    -->
+    <div class="btn-row">
+      <a class="btn" href="/downloads/MVave_TankG_OnePage_Amp_Cab_BW.pdf" target="_blank" rel="noopener">⬇️ One Page (BW)</a>
+      <a class="btn" href="/downloads/MVave_TankG_Preset_Book.pdf" target="_blank" rel="noopener">⬇️ Preset Book</a>
+      <a class="btn" href="/downloads/MVave_TankG_PresetBook_v2_Pickup.pdf" target="_blank" rel="noopener">⬇️ Preset Book v2 (Pickup)</a>
+      <a class="btn" href="/downloads/MVave_TankG_EQ_Gain_Settings.pdf" target="_blank" rel="noopener">⬇️ EQ & Gain</a>
+      <a class="btn" href="/downloads/MVave_TankG_AllRound_Preset.pdf" target="_blank" rel="noopener">⬇️ All-Round Preset</a>
+      <a class="btn" href="/downloads/MVave_TankG_OnePage_A5_Pocket.pdf" target="_blank" rel="noopener">⬇️ Pocket A5</a>
+    </div>
+  </header>
+
+  <!-- 2-column layout (desktop) -->
+  <div class="grid-2">
+    <!-- AMP MODELS -->
+    <section class="card">
+      <div class="card-head">
+        <h2>AMP MODELS</h2>
+        <p>Model ampli di Tank-G dan padanan real amp (referensi karakter).</p>
+      </div>
+
+      <div class="table-wrap">
+        <table aria-label="AMP Models">
+          <thead>
+            <tr>
+              <th style="width:70px;">Slot</th>
+              <th>Tank-G</th>
+              <th>Real Amp</th>
+              <th style="width:180px;">Karakter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>UWE-Twins 335</td><td>Two-Rock / Dumble</td><td>Clean tebal</td></tr>
+            <tr><td>2</td><td>Archetype_C_W</td><td>Mesa / Dumble</td><td>Warm, smooth</td></tr>
+            <tr><td>3</td><td>TH-Mars VM410</td><td>Marshall JVM</td><td>OD modern</td></tr>
+            <tr><td>4</td><td>Friedman 100</td><td>Friedman BE</td><td>Punchy rock</td></tr>
+            <tr><td>5</td><td>Brit Plex 50</td><td>Marshall Plexi</td><td>Classic crunch</td></tr>
+            <tr><td>6</td><td>Mars FD Hundred</td><td>JCM800 mod</td><td>Rock-metal</td></tr>
+            <tr><td>7</td><td>Pea V 534</td><td>Peavey 5150</td><td>High gain</td></tr>
+            <tr><td>8</td><td>Diesel_Hagan_6</td><td>Diezel VH4</td><td>Modern metal</td></tr>
+            <tr><td>9</td><td>EVH 5150 III EL34</td><td>EVH 5150</td><td>Cutting lead</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <strong>Catatan cepat:</strong> untuk tone “serba bisa”, Friedman 100 + cab V30 sering paling aman.
+      </div>
+    </section>
+
+    <!-- IR CAB MODELS -->
+    <section class="card">
+      <div class="card-head">
+        <h2>IR CAB MODELS</h2>
+        <p>Simulasi cabinet (IR) di Tank-G dan karakter umum tiap cab.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table aria-label="IR Cab Models">
+          <thead>
+            <tr>
+              <th style="width:70px;">Slot</th>
+              <th>Cabinet</th>
+              <th style="width:90px;">Size</th>
+              <th style="width:220px;">Karakter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>IR OFF</td><td>-</td><td>Cab real only</td></tr>
+            <tr><td>1</td><td>VHT Deliverance</td><td>4x12</td><td>Tight modern</td></tr>
+            <tr><td>2</td><td>Experimental</td><td>4x12</td><td>Sound design</td></tr>
+            <tr><td>3</td><td>Electro-Voice</td><td>2x10</td><td>Clear fast</td></tr>
+            <tr><td>4</td><td>Mesa Boogie</td><td>4x12</td><td>Low end besar</td></tr>
+            <tr><td>5</td><td>Fender Champ</td><td>1x8</td><td>Vintage</td></tr>
+            <tr><td>6</td><td>Fender Princeton</td><td>1x10</td><td>Clean balance</td></tr>
+            <tr><td>7</td><td>Marshall 1960 V30</td><td>4x12</td><td>Rock mid</td></tr>
+            <tr><td>8</td><td>Diezel V30</td><td>4x12</td><td>Modern metal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <strong>FRFR / speaker aktif:</strong> gunakan IR CAB <strong>ON</strong> (slot 1–8). Hindari IR OFF kecuali ke power amp + cabinet gitar asli.
+      </div>
+    </section>
+  </div>
+
+  <!-- Preset Book table -->
+  <section class="card preset" style="margin-top:16px;">
+    <div class="card-head">
+      <h2>Preset Book – Pairing AMP + CAB</h2>
+      <p>Rekomendasi pairing dasar per genre (silakan sesuaikan gain/EQ sesuai gitar & speaker).</p>
+    </div>
+
+    <div class="table-wrap">
+      <table aria-label="Preset Book">
+        <thead>
+          <tr>
+            <th style="width:160px;">Genre</th>
+            <th style="width:200px;">AMP</th>
+            <th style="width:220px;">CAB</th>
+            <th>Catatan Tone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Clean / Jazz</td><td>UWE-Twins 335</td><td>Fender Princeton 1x10</td><td>Clean tebal, natural</td></tr>
+          <tr><td>Blues</td><td>Brit Plex 50</td><td>Fender Champ 1x8</td><td>Crunch ringan vintage</td></tr>
+          <tr><td>Classic Rock</td><td>Brit Plex 50</td><td>Marshall 1960 V30</td><td>Mid maju</td></tr>
+          <tr><td>Modern Rock</td><td>Friedman 100</td><td>Marshall 1960 V30</td><td>Punchy & tight</td></tr>
+          <tr><td>Hard Rock</td><td>TH-Mars VM410</td><td>Mesa 4x12</td><td>Gain tebal</td></tr>
+          <tr><td>Metal</td><td>Pea V 534</td><td>Mesa 4x12</td><td>Low end besar</td></tr>
+          <tr><td>Modern Metal</td><td>Diesel_Hagan_6</td><td>Diezel V30 4x12</td><td>Clarity tinggi</td></tr>
+          <tr><td>Lead Metal</td><td>EVH 5150 III EL34</td><td>Marshall 1960 V30</td><td>Cutting lead</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>Tips:</strong> Pakai EQ setelah AMP untuk fine-tuning, dan hindari IR OFF kecuali ke power amp + guitar cabinet asli.
+    </div>
+  </section>
+
+  <footer class="tankg-footer">
+    <p style="margin:0;">© Community reference. Nama merek adalah trademark pemilik masing-masing.</p>
+  </footer>
+</section>
